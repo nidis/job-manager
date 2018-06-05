@@ -1,5 +1,6 @@
 package com.nidis;
 
+import com.nidis.jms.OrderProducer;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -18,12 +19,13 @@ public class AppTest {
     public OutputCapture outputCapture = new OutputCapture();
 
     @Autowired
-    private Producer producer;
+    private OrderProducer orderProducer;
 
     @Test
     public void sendOrderMessage() throws InterruptedException {
-        this.producer.send("Order message");
+        this.orderProducer.send("Order message");
         Thread.sleep(1000L);
+
         assertThat(this.outputCapture.toString().contains("Order message")).isTrue();
     }
 }

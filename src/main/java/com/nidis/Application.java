@@ -25,11 +25,13 @@ public class Application {
         return new ActiveMQQueue(QUEUE_NAME);
     }
 
+    /***
+     * This is for failed messages.
+     */
     @Bean
     public RedeliveryPolicy redeliveryPolicy() {
         RedeliveryPolicy topicPolicy = new RedeliveryPolicy();
         topicPolicy.setQueue(QUEUE_NAME);
         return topicPolicy;
     }
-
 }
